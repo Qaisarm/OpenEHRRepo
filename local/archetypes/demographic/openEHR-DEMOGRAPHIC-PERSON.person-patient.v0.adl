@@ -1,10 +1,11 @@
-﻿archetype (adl_version=1.4; uid=894b1c58-29eb-4ce5-8ab5-0af0ffc3ad8d)
+archetype (adl_version=1.4; uid=894b1c58-29eb-4ce5-8ab5-0af0ffc3ad8d)
 	openEHR-DEMOGRAPHIC-PERSON.person-patient.v0
-specialise
+specialize
 	openEHR-DEMOGRAPHIC-PERSON.person.v0
 
 concept
-	[at0000.1]	-- Patient
+	[at0000.1]
+
 language
 	original_language = <[ISO_639-1::en]>
 	translations = <
@@ -33,49 +34,46 @@ language
 			>
 		>
 	>
+
 description
 	original_author = <
+		["date"] = <"2009-05-22">
 		["name"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias">
 		["organisation"] = <"Universidade do Estado do Rio de Janeiro - UERJ">
 		["email"] = <"sergio@lampada.uerj.br">
-		["date"] = <"2009-05-22">
 	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)","Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)","Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
 	details = <
 		["ko"] = <
 			language = <[ISO_639-1::ko]>
 			purpose = <"환자 인적 데이터의 표현.">
-			use = <"환자 데이터를 수집하는 인적정보 서비스에서 사용됨.">
-			keywords = <"*인적정보 서비스(ko)", "*환자 데이터(ko)">
-			misuse = <"">
+			keywords = <"*인적정보 서비스(ko)","*환자 데이터(ko)">
 			copyright = <"© openEHR Foundation">
+			use = <"환자 데이터를 수집하는 인적정보 서비스에서 사용됨.">
 		>
 		["pt-br"] = <
 			language = <[ISO_639-1::pt-br]>
 			purpose = <"Representação dos dados demográficos de um paciente.">
-			use = <"Usado em serviço demográficos para coletar os dados de um paciente.">
-			keywords = <"serviço demográfico", "dados de um paciente">
-			misuse = <"">
+			keywords = <"serviço demográfico","dados de um paciente">
 			copyright = <"© openEHR Foundation">
+			use = <"Usado em serviço demográficos para coletar os dados de um paciente.">
 		>
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"Representation of a patient's demographic data.">
-			use = <"Used in demographic service to collect a patient's data.">
-			keywords = <"demographic service", "patient's data">
-			misuse = <"">
+			keywords = <"demographic service","patient's data">
 			copyright = <"© openEHR Foundation">
+			use = <"Used in demographic service to collect a patient's data.">
 		>
 		["es-py"] = <
 			language = <[ISO_639-1::es-py]>
 			purpose = <"Representación de los datos demográficos de un paciente.">
-			use = <"Utilizado en servicios demográficos para recolectar los datos de un paciente.">
-			keywords = <"servicio demográfico", "datos de un paciente">
-			misuse = <"">
+			keywords = <"servicio demográfico","datos de un paciente">
 			copyright = <"© openEHR Foundation">
+			use = <"Utilizado en servicios demográficos para recolectar los datos de un paciente.">
 		>
 	>
-	lifecycle_state = <"in_development">
-	other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
 	other_details = <
 		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
@@ -83,84 +81,77 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"6ED6B618C5805EC0F1B2172B3506190C">
+		["MD5-CAM-1.0.1"] = <"fc3f9d3dee6699415f1196de2226bc0d">
 		["build_uid"] = <"9b7b75b2-5937-4aa6-98c2-75689af305e9">
 		["revision"] = <"0.0.1-alpha">
 	>
 
 definition
-    PERSON[at0000.1] matches {  -- patient demographic data
-        details matches {
-            allow_archetype ITEM_TREE[at0001] occurrences matches {1..1} matches {
-                include
-                   archetype_id/value matches {/openEHR-DEMOGRAPHIC-ITEM_TREE\.person_details[a-zA-Z0-9_-]*\.v0/}
-            }
-        }
-        identities matches {
-            allow_archetype PARTY_IDENTITY[at0002.1] occurrences matches {1..1} matches {
-                include
-                    archetype_id/value matches {/openEHR-DEMOGRAPHIC-PARTY_IDENTITY\.person_name[a-zA-Z0-9_-]*\.v0/}
-            }
-        }
-        contacts matches {
-            CONTACT[at0003.1] occurrences matches {1..1} matches {  -- Contacts
-                addresses matches {
-                    allow_archetype ADDRESS[at0030] occurrences matches {1..1} matches {
-                        include
-                            archetype_id/value matches {/openEHR-DEMOGRAPHIC-ADDRESS\.address([a-zA-Z0-9_]+)*\.v0/}
-                            archetype_id/value matches {/openEHR-DEMOGRAPHIC-ADDRESS\.electronic_communication[a-zA-Z0-9_-]*\.v0/}
-                    }
-                }
-            }
-        }
-        relationships matches {
-			PARTY_RELATIONSHIP[at0004.1] matches {	-- personal relationships
+	PERSON[at0000.1] matches {    -- Patient
+		details matches {
+			allow_archetype ITEM_TREE[at0001.1] matches {    -- Demographic details
+				include
+					archetype_id/value matches {/openEHR-DEMOGRAPHIC-ITEM_TREE\.person_details[a-zA-Z0-9_-]*\.v0/}
+			}
+		}
+		identities cardinality matches {1..*; unordered} matches {
+			allow_archetype PARTY_IDENTITY[at0002.1] matches {    -- Name
+				include
+					archetype_id/value matches {/openEHR-DEMOGRAPHIC-PARTY_IDENTITY\.person_name[a-zA-Z0-9_-]*\.v0/}
+			}
+		}
+		contacts cardinality matches {1..*; unordered} matches {
+			CONTACT[at0003.1] matches {    -- Contacts
+				addresses cardinality matches {1..*; unordered} matches {
+					allow_archetype ADDRESS[at0030] matches {    -- Addresses
+						include
+							archetype_id/value matches {/openEHR-DEMOGRAPHIC-ADDRESS\.address([a-zA-Z0-9_]+)*\.v0/}
+							archetype_id/value matches {/openEHR-DEMOGRAPHIC-ADDRESS\.electronic_communication[a-zA-Z0-9_-]*\.v0/}
+					}
+				}
+			}
+		}
+		relationships cardinality matches {1..*; unordered} matches {
+			PARTY_RELATIONSHIP[at0004.1] matches {    -- Relationships
 				details matches {
-					ITEM_TREE [at0.40] matches {	
-						items matches {
-							ELEMENT[at0040] matches {	-- type of relationship
-								value matches { 
+					ITEM_TREE[at0.40] matches {    -- Personal relationship
+						items cardinality matches {0..*; unordered} matches {
+							ELEMENT[at0040] matches {    -- Relationship type
+								value matches {
 									DV_TEXT matches {*}
-									DV_CODED_TEXT matches {
-										defining_code matches {[ac0000]}
-									}		
+									DV_CODED_TEXT matches {*}
 								}
-							 }
-						}
-					}
-				}
-			}		
-			PARTY_RELATIONSHIP[at0.2] matches {	-- relationship between a patient and a third-party payer
-				details matches {
-					ITEM_TREE[at0.20] matches {
-						items matches {
-							allow_archetype CLUSTER[at0.21]	matches {
-								include
-								archetype_id/value matches {/openEHR-DEMOGRAPHIC-CLUSTER\.person_identifier[a-zA-Z0-9_-]*\.v0/}
 							}
 						}
 					}
 				}
 			}
-			PARTY_RELATIONSHIP[at0.3] matches {	--  relationship between a patient and a healthcare provider organisation/individual provider
+			PARTY_RELATIONSHIP[at0.2] matches {    -- Third party payer
 				details matches {
-					ITEM_TREE[at0.30] matches {
-						items  matches {
-							allow_archetype CLUSTER[at0.31]	matches {
+					ITEM_TREE[at0.20] matches {    -- Patient identifiers
+						items cardinality matches {0..*; unordered} matches {
+							allow_archetype CLUSTER[at0.21] matches {    -- Healthcare consumer identifier.
 								include
-								archetype_id/value matches {/openEHR-DEMOGRAPHIC-CLUSTER\.person_identifier[a-zA-Z0-9_-]*\.v0/}
+									archetype_id/value matches {/openEHR-DEMOGRAPHIC-CLUSTER\.person_identifier[a-zA-Z0-9_-]*\.v0/}
 							}
-						}	
+						}
 					}
 				}
 			}
-        }
-    }
-
-
-
-
-
+			PARTY_RELATIONSHIP[at0.3] matches {    -- Healthcare provider/Health professional
+				details matches {
+					ITEM_TREE[at0.30] matches {    -- Patient identifiers
+						items cardinality matches {0..*; unordered} matches {
+							allow_archetype CLUSTER[at0.31] matches {    -- Patient identifier
+								include
+									archetype_id/value matches {/openEHR-DEMOGRAPHIC-CLUSTER\.person_identifier[a-zA-Z0-9_-]*\.v0/}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 
 ontology
 	term_definitions = <
@@ -234,6 +225,10 @@ ontology
 					text = <"Identificação no prestador">
 					description = <"Documento de identificação do paciente junto ao prestador.">
 				>
+				["at0001.1"] = <
+					text = <"Detalhes">
+					description = <"Detalhes demográficos do paciente.">
+				>
 			>
 		>
 		["en"] = <
@@ -305,6 +300,10 @@ ontology
 				["at0.31"] = <
 					text = <"Patient identifier">
 					description = <"A patient identifier at the related healthcare provider.">
+				>
+				["at0001.1"] = <
+					text = <"Demographic details">
+					description = <"A patient's demographic details.">
 				>
 			>
 		>
@@ -378,6 +377,10 @@ ontology
 					text = <"관계타입">
 					description = <"관련된 개인들 간의 관계의 타입을 정의.">
 				>
+				["at0001.1"] = <
+					text = <"인적정보 상세내용">
+					description = <"환자의 인적정보 상세내용">
+				>
 			>
 		>
 		["es-py"] = <
@@ -450,39 +453,9 @@ ontology
 					text = <"Grado de parentesco">
 					description = <"Define el grado de parentesco entre las personas involucradas.">
 				>
-			>
-		>
-	>
-	constraint_definitions = <
-		["pt-br"] = <
-			items = <
-				["ac0000"] = <
-					text = <"Códigos para tipo de parentesco">
-					description = <"códigos válidos para tipo de parentesco.">
-				>
-			>
-		>
-		["en"] = <
-			items = <
-				["ac0000"] = <
-					text = <"Codes for the type of relationship">
-					description = <"Valid codes for the type of relationship.">
-				>
-			>
-		>
-		["ko"] = <
-			items = <
-				["ac0000"] = <
-					text = <"관계타입 코드">
-					description = <"관계의 타입을 위한 유효한 코드.">
-				>
-			>
-		>
-		["es-py"] = <
-			items = <
-				["ac0000"] = <
-					text = <"Código para tipo de parentesco">
-					description = <"código válidos para tipo de parentesco.">
+				["at0001.1"] = <
+					text = <"Detalles">
+					description = <"Detalles demográficos del paciente.">
 				>
 			>
 		>
