@@ -1,0 +1,90 @@
+archetype (adl_version=1.4, uid=894b1c58-29eb-4ce5-8ab5-0af0ffc3ad8d)
+    openEHR-EHR-ADMIN_ENTRY.patient.v1
+description
+    original_author = <
+        ["name"] = "Generated Example"
+        ["organisation"] = "OpenAI Example"
+        ["date"] = "2025-09-17"
+        ["email"] = "example@example.org"
+    >
+    lifecycle_state = <"0 (Draft)">
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record patient registration and demographic details.">
+            use = <"Used during patient registration in healthcare systems.">
+        >
+    >
+definition
+    ADMIN_ENTRY[at0000] matches {
+        items cardinality matches {0..*; unordered} matches {
+            ELEMENT[at0001] occurrences matches {0..1} matches {    -- Patient Identifier
+                value matches {
+                    DV_IDENTIFIER matches {*}
+                }
+            }
+            ELEMENT[at0002] occurrences matches {0..1} matches {    -- Name
+                value matches {
+                    DV_TEXT matches {*}
+                }
+            }
+            ELEMENT[at0003] occurrences matches {0..1} matches {    -- Gender
+                value matches {
+                    DV_CODED_TEXT matches {*}
+                }
+            }
+            ELEMENT[at0004] occurrences matches {0..1} matches {    -- Date of Birth
+                value matches {
+                    DV_DATE matches {*}
+                }
+            }
+            ELEMENT[at0005] occurrences matches {0..1} matches {    -- Address
+                value matches {
+                    DV_TEXT matches {*}
+                }
+            }
+            ELEMENT[at0006] occurrences matches {0..1} matches {    -- Contact Number
+                value matches {
+                    DV_TEXT matches {*}
+                }
+            }
+            ELEMENT[at0007] occurrences matches {0..1} matches {    -- Email
+                value matches {
+                    DV_TEXT matches {*}
+                }
+            }
+            ELEMENT[at0008] occurrences matches {0..1} matches {    -- Registration Date
+                value matches {
+                    DV_DATE_TIME matches {*}
+                }
+            }
+            ELEMENT[at0009] occurrences matches {0..1} matches {    -- Insurance Information
+                value matches {
+                    DV_TEXT matches {*}
+                }
+            }
+            ELEMENT[at0010] occurrences matches {0..1} matches {    -- Next of Kin / Emergency Contact
+                value matches {
+                    DV_TEXT matches {*}
+                }
+            }
+        }
+    }
+ontology
+    term_definitions = <
+        ["en"] = <
+            items = <
+                ["at0000"] = <text = "Patient Registration" description = "Administrative data for patient registration.">
+                ["at0001"] = <text = "Patient Identifier" description = "System or hospital identifier for the patient.">
+                ["at0002"] = <text = "Name" description = "Full name of the patient.">
+                ["at0003"] = <text = "Gender" description = "Gender of the patient.">
+                ["at0004"] = <text = "Date of Birth" description = "Date of birth of the patient.">
+                ["at0005"] = <text = "Address" description = "Home address of the patient.">
+                ["at0006"] = <text = "Contact Number" description = "Phone or mobile number.">
+                ["at0007"] = <text = "Email" description = "Email address of the patient.">
+                ["at0008"] = <text = "Registration Date" description = "Date and time of registration.">
+                ["at0009"] = <text = "Insurance Information" description = "Insurance details.">
+                ["at0010"] = <text = "Next of Kin" description = "Emergency contact / next of kin.">
+            >
+        >
+    >
